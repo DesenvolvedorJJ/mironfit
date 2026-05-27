@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Habilita o modo escuro por CLASSE (.dark no <html>), não por preferência do SO,
+   para podermos alternar manualmente com o botão. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== Tema visual MironFit =====
+   Marca: AMARELO sobre BRANCO. Tokens semânticos como CSS variables.
+   Os valores em @theme são o LIGHT MODE (padrão); o bloco .dark sobrescreve.
+   Cores de marca (amarelo) e de status (sucesso/erro) são iguais nos dois modos. */
+@theme {
+  /* Marca + status (constantes) */
+  --color-primary: #FFD60A;       /* amarelo MironFit (preenchimento) */
+  --color-primary-dark: #E6B800;  /* fim do gradiente */
+  --color-accent-fg: #997404;     /* "amarelo" legível como TEXTO sobre branco */
+  --color-success: #22C55E;       /* metas concluídas / evolução positiva */
+  --color-danger: #FF5A5F;        /* erros / sair */
+
+  /* Superfícies e texto — LIGHT MODE (padrão) */
+  --color-canvas: #C9CDD4;        /* área atrás do "celular" */
+  --color-bg: #F5F6F8;            /* fundo da tela do app */
+  --color-surface: #FFFFFF;       /* cards (branco) */
+  --color-surface-2: #ECEEF2;     /* insets (steppers, chips) */
+  --color-border: #E3E6EB;
+  --color-text: #14161B;
+  --color-muted: #6E7682;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== DARK MODE: sobrescreve só as superfícies/texto ===== */
+.dark {
+  --color-accent-fg: #FFD60A;     /* sobre fundo escuro, amarelo vivo é legível */
+  --color-canvas: #05070A;
+  --color-bg: #0E1116;
+  --color-surface: #171B22;
+  --color-surface-2: #232830;
+  --color-border: #2C313B;
+  --color-text: #F2F4F7;
+  --color-muted: #9098A6;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Esconde a barra de rolagem dentro do "celular" sem perder o scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
